@@ -1,0 +1,13 @@
+export const ExceptionCodes = {
+  INVALID_ARGUMENT: 'INVALID_ARGUMENT',
+  NOT_FOUND: 'NOT_FOUND',
+  CONFLICT: 'CONFLICT',
+  INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR',
+  ARGUMENT_NOT_PROVIDED: 'ARGUMENT_NOT_PROVIDED',
+  OUT_OF_RANGE: 'OUT_OF_RANGE',
+
+  USER_ALREADY_EXISTS: 'USER_ALREADY_EXISTS',
+} as const;
+
+export type ExceptionCode =
+  (typeof ExceptionCodes)[keyof typeof ExceptionCodes];
