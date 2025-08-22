@@ -1,33 +1,33 @@
 import { oc } from '@orpc/contract';
-import { CreateUserSchema } from '../schemas/create-user.schema';
-import { UserSchema } from '../schemas/user.schema';
-import { GetUserByEmailSchema } from '../schemas/get-user-by-email.schema';
+import { CreateUserSchema } from './schemas/create-user.schema';
+import { UserSchema } from './schemas/user.schema';
+import { GetUserByEmailSchema } from './schemas/get-user-by-email.schema';
 import { populateContractRouterPaths } from '@orpc/nest';
 
-export const createUserContract = oc
+const createUserContract = oc
   .route({
     method: 'POST',
-    path: '/users',
+    path: '/orpc/users',
   })
   .input(CreateUserSchema)
   .output(UserSchema.pick({ id: true }));
 
-export const getUsersContract = oc
+const getUsersContract = oc
   .route({
     method: 'GET',
-    path: '/users',
+    path: '/orpc/users',
   })
   .output(UserSchema.array());
 
-export const getUserByEmailContract = oc
+const getUserByEmailContract = oc
   .route({
     method: 'GET',
-    path: '/users/email',
+    path: '/orpc/users/email',
   })
   .input(GetUserByEmailSchema)
   .output(UserSchema);
 
-export const usersOrpcContract = populateContractRouterPaths({
+export const orpcContract = populateContractRouterPaths({
   users: {
     list: getUsersContract,
     getByEmail: getUserByEmailContract,
