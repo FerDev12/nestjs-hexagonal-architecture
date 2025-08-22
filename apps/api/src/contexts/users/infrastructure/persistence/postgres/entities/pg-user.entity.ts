@@ -3,17 +3,17 @@ import { Column, Entity, PrimaryColumn } from 'typeorm';
 @Entity({ name: 'users' })
 export class PgUser {
   @PrimaryColumn({ type: 'uuid', default: () => 'gen_random_uuid()' })
-  id: string;
+  id!: string;
 
   @Column({ type: 'text', unique: true })
-  email: string;
+  email!: string;
 
   @Column({ type: 'text' })
-  name: string;
+  name!: string;
 
   @Column({ type: 'timestamp' })
-  createdAt: Date;
+  createdAt!: Date;
 
   @Column({ type: 'timestamp', nullable: true })
-  updatedAt: Date | null;
+  updatedAt?: Date | null = null;
 }
