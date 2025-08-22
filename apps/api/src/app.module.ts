@@ -4,6 +4,7 @@ import { UsersModule } from './contexts/users/application/users.module';
 import { UsersInfrastructureModule } from './contexts/users/infrastructure/users-infrastracture.module';
 import { onError, ORPCModule } from '@orpc/nest';
 import { REQUEST } from '@nestjs/core';
+import { CoreModule } from './contexts/core/core.module';
 
 export interface CoreModuleOptions {
   driver: 'postgres' | 'in-memory';
@@ -31,6 +32,9 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
+        CoreModule.forRoot({
+          driver: options.driver,
+        }),
         UsersModule.forRoot({
           infrastructure: UsersInfrastructureModule.forRoot({
             driver: options.driver,
